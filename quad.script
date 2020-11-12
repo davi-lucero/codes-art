@@ -1,0 +1,32 @@
+#
+
+units si
+dimension 2
+atom_style bond
+atom_modify sort 0 0
+timestep 0.1
+#timestep padrão na ordem de e-8 que a gente aumenta para 
+#poder visualizar algum resultado cuidado ao aumentar muito 
+#que perde fidelidade dos dados, que eu notei até agora foi nas velocidades
+
+read_data data.inicial
+
+write_dump all atom initial.lammpstrj
+
+bond_style table linear 501
+bond_coeff 1 bonds.table QUAD
+
+group AntiBoundary id 2:33
+
+mass 1 1
+
+neighbor 0.3 bin
+neigh_modify every 20 delay 0 check no
+
+fix 1 AntiBoundary nve
+
+dump 1 all custom 1 dump_quad.comp x vx
+
+run 2392000
+
+#lmp_serial.exe -in quad.script
