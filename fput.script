@@ -24,6 +24,6 @@ neigh_modify every 20 delay 0 check no
 
 fix 1 AntiBoundary nve
 
-dump 1 all custom 1 dump_quad.comp x vx
+dump 1 all custom 1 res.comp x vx
 
 run 2392000
