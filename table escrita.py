@@ -22,8 +22,3 @@ with open('bonds.table','w+') as f:
     for i in range(N):
         x=i*dx+ux
         f.write(str(i+1) +' '+ str(x) +' '+ str(-x*(k*l+k2*l**3)+x**2*(k/2+3*k2/2*l**2)+x**3*k2*l-x**4*k2/4) +' '+ str(k*(l-x)+k2*(l-x)**3) +'\n')  
-    f.write('\nLIN\n')
-    f.write('N '+str(N)+'\n\n')
-    for i in range(N):
-        x=i*dx+ux
-        f.write(str(i+1) +' '+ str(x) +' '+ str(-k*l*x+k*x**2/2) +' '+ str(k*(l-x)) +'\n')
