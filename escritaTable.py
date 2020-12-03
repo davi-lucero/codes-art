@@ -8,7 +8,7 @@ ux=2.5 #Máximo deslocamento da mola do seu centro de equilíbrio
 N=int(2*ux/dx+1) #Quantidades de 'pontos' na tabela
                  #Transformando para valor inteiro, cuidado que pode ter a parte decimal truncada
 
-with open('bonds.table','w+') as f:
+with open('bonds.in','w+') as f:
     f.write('#Termo linear e termo quadrático\n\n')
     f.write('QUAD\n')
     f.write('N '+str(N) +'\n\n')
