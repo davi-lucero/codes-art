@@ -26,7 +26,7 @@ VEL=np.empty([IT,2*N+2])
 it=0
 k=0
 #
-with open('dump_quad.comp') as f: 
+with open('res.comp') as f: 
     #Loop para obter a posição e a velocidade das partículas a partir da primeira iteração do LAMMPS
     for line in f:                
         k=k+1
