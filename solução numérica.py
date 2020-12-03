@@ -4,7 +4,7 @@ alpha=0.25 #Parâmetro não-linear
 R_1_O=10500 # Tempo de recorrência de primeira ordem aproximadamente
 R_2_O=R_1_O*23 #Tempo de recorrência de segunda ordem aproximadamente
 DT=20
-g=int(R_2_O/DT)
+it=int(R_2_O/DT) 
 t=list(range(DT,R_1_O+1,DT))
 tspan= list(range (0,R_2_O+1, DT))
 
@@ -14,7 +14,7 @@ import numpy as np
 a=1
 b=[]
 omegak2=[]
-#Excitação inicial
+#Loop para definir as condições iniciais e as frequênicas normais de oscilação do sistema
 for x in range(1, N+1):
     b.insert(x-1,a*m.sin(m.pi*x/(N+1)))
     b.insert(x+N-1,0)
@@ -44,20 +44,20 @@ x=[]
 v=[]
 Energ=[]
 E=[]
-for i in range(0,g):
+for i in range(0,it):
     YX.insert(i,[])
     YV.insert(i,[])
     x.insert(i,[])
     v.insert(i,[])
     Energ.insert(i,[])
-for i in range(1,g+1):
+for i in range(1,it+1):
     TIME.insert(i-1,i*DT*m.sqrt(omegak2[0])/2/m.pi)
     YX[i-1].insert(0,0)
     YV[i-1].insert(0,0)
     for j in range(0,N):
         YX[i-1].insert(j+1,sol[i-1][j])
         YV[i-1].insert(j+1,sol[i-1][j+N])
-for i in range(0,g):
+for i in range(0,it):
     for j in range (0,N+1):
         x[i].insert(j,YX[i][j])
         v[i].insert(j,YV[i][j])
@@ -96,7 +96,7 @@ modo3=mpatches.Patch(color=cmap(2), label='modo 3')
 modo4=mpatches.Patch(color=cmap(3), label='modo 4')
 modo5=mpatches.Patch(color=cmap(4), label='modo 5')
 
-#plt.legend(handles=[modo1,modo2,modo3,modo4,modo5],loc='best',ncol=3, fontsize='small')
+plt.legend(handles=[modo1,modo2,modo3,modo4,modo5],loc='best',ncol=3, fontsize='small')
 
 plt.show()
 
@@ -111,7 +111,7 @@ plt.xlabel('Tempo x $10^4$')
 plt.ylabel('Energia')
 plt.plot(tempo,Energ)
 plt.yticks(np.arange(0, 0.08, 0.025))
-#plt.legend(handles=[modo1,modo2],loc='best',ncol=2,fontsize='medium')
+plt.legend(handles=[modo1,modo2],loc='best',ncol=2,fontsize='medium')
 
 plt.show()
 
@@ -135,17 +135,6 @@ plt.xlabel('Tempo x $10^4$')
 plt.ylabel('Energia')
 plt.plot(tempo,ENE)
 plt.yticks(np.arange(0, 0.08, 0.025))
-#plt.legend(handles=[modo1],loc='best',fontsize='medium')
+plt.legend(handles=[modo1],loc='best',fontsize='medium')
 
 plt.show()
-
-#Código para verificar o modulação do gráfico de máximos do modo 1
-# al=[]
-# for i in range(0,len(Energ)):
-#     al.append((omegak2[0]*(sXF[i][1])**2+(sVF[i][1])**2)/2)
-# x1=np.linspace(0,1,len(Energ))
-# x2=np.linspace(0,1,len(ENE))
-# fig, ax = plt.subplots()
-# ax.plot(x1,al)
-# ax.plot(x2,ENE)
-# plt.show()
