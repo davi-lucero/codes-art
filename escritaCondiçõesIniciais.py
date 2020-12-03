@@ -6,7 +6,7 @@ import math
 for x in range(1, N-1):
     b.append(a*math.sin(math.pi*x/(N-1))) #Atribuindo os deslocamentos relativos da x-ésima particula em relação ao seu centro de equilíbrio
     
-with open('data_quad.inicial','w+') as f:
+with open('fput.in','w+') as f:
     f.write('atoms position and bonds\n')
     f.write(str(N)+' atoms\n')
     f.write(str(N-1)+' bonds\n')
