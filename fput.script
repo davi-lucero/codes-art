@@ -13,6 +13,7 @@ write_dump all atom initial.lammpstrj
 
 bond_style table linear 501
 bond_coeff 1 bonds.table QUAD
+#Caso quisesse testar o caso cúbico, apenas substituir o termo 'QUAD' na linha acima por 'CUB'.
 
 group AntiBoundary id 2:33
 
