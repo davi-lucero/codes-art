@@ -1,8 +1,12 @@
 # -*- coding: utf-8 -*-
-N=32 #Número de partículas têm que ser uma potência de dois
-alpha=0.25 #Parâmetro não-linear
-R_1_O=10500 # Tempo de recorrência de primeira ordem aproximadamente
-R_2_O=R_1_O*23 #Tempo de recorrência de segunda ordem aproximadamente
+# Número de partículas têm que ser uma potência de dois
+N=32 
+# Parâmetro não-linear
+alpha=0.25 
+# Tempo de recorrência de primeira ordem aproximadamente
+R_1_O=10500 
+# Tempo de recorrência de segunda ordem aproximadamente
+R_2_O=R_1_O*23 
 DT=20
 it=int(R_2_O/DT) 
 t=list(range(DT,R_1_O+1,DT))
@@ -14,13 +18,13 @@ import numpy as np
 a=1
 b=[]
 omegak2=[]
-#Loop para definir as condições iniciais e as frequênicas normais de oscilação do sistema
+# Loop para definir as condições iniciais e as frequênicas normais de oscilação do sistema
 for x in range(1, N+1):
     b.insert(x-1,a*m.sin(m.pi*x/(N+1)))
     b.insert(x+N-1,0)
     omegak2.insert(x-1, 4*(m.sin(m.pi*x/2/(N+1)))**2)
 
-#Integração temporal
+# Integração temporal
 from scipy.integrate import odeint
 D=[0]*2*N
 def dydt(y,t):
@@ -70,7 +74,7 @@ for i in range(0,it):
 sXF=((np.fft.fft(x)).imag)/m.sqrt(2*(N+1))
 sVF=((np.fft.fft(v)).imag)/m.sqrt(2*(N+1))
 
-#Código para obter figura de um ciclo de primeira ordem
+# Código para obter figura de um ciclo de primeira ordem
 for i in range (0,int(R_1_O/DT)):
     E.insert(i,[])
     for j in range (0,5):
@@ -88,7 +92,8 @@ plt.plot(tempo,E)
 plt.yticks(np.arange(0, 0.08, 0.025))
 plt.xticks(np.arange(0,R_1_O/1000,2.5))
 
-cmap=plt.get_cmap('tab10') #Conseguir as cores padrão de 
+# Conseguir as cores padrão de 
+cmap=plt.get_cmap('tab10') 
 
 modo1=mpatches.Patch(color=cmap(0), label='modo 1')
 modo2=mpatches.Patch(color=cmap(1), label='modo 2')
@@ -100,7 +105,7 @@ plt.legend(handles=[modo1,modo2,modo3,modo4,modo5],loc='best',ncol=3, fontsize='
 
 plt.show()
 
-#Código para obter figura de um ciclo de segunda ordem
+# Código para obter figura de um ciclo de segunda ordem
 for i in range(0,len(Energ)):
     for j in range(0,2):
         Energ[i].insert(j,(omegak2[j]*(sXF[i][j+1])**2+(sVF[i][j+1])**2)/2)
