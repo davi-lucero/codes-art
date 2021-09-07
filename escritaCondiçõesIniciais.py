@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
-N=34 #Número de partículas simuladas com duas partículas a mais para servirem de parede
+# Número de partículas simuladas com duas partículas a mais para servirem de parede
+N=34 
 b=[]
-a=1.0 #amplitude de deslocamento
+# Amplitude de deslocamento
+a=1.0
+# Atribuindo os deslocamentos relativos da x-ésima particula em relação ao seu centro de equilíbrio
 import math
 for x in range(1, N-1):
-    b.append(a*math.sin(math.pi*x/(N-1))) #Atribuindo os deslocamentos relativos da x-ésima particula em relação ao seu centro de equilíbrio
+    b.append(a*math.sin(math.pi*x/(N-1))) 
     
 with open('fput.in','w+') as f:
     f.write('atoms position and bonds\n')
