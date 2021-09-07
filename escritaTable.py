@@ -1,12 +1,16 @@
 # -*- coding: utf-8 -*-
 alpha=0.25
 beta=8
-k=1 #Valor da rigidez da mola, numericamente igual a massa
-l=5 #Distância básica dos átomos em que a mola está em repouso
-dx=0.01 #Incremento para o tamanho da ligação
-ux=2.5 #Máximo deslocamento da mola do seu centro de equilíbrio
-N=int(2*ux/dx+1) #Quantidades de 'pontos' na tabela
-                 #Transformando para valor inteiro, cuidado que pode ter a parte decimal truncada
+# Valor da rigidez da mola, numericamente igual a massa
+k=1 
+# Distância básica dos átomos em que a mola está em repouso
+l=5 
+# Incremento para o tamanho da ligação
+dx=0.01 
+# Máximo deslocamento da mola do seu centro de equilíbrio
+ux=2.5 
+# Quantidades de 'pontos' na tabela
+N=int(2*ux/dx+1) 
 
 with open('bonds.in','w+') as f:
     f.write('#Termo linear e termo quadrático\n\n')
